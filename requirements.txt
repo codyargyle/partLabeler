@@ -1,8 +1,5 @@
-numpy
-pandas
-opencv-python
 tensorflow
-keras
-matplotlib
+pandas
+numpy
 scikit-learn
-pillow
+opencv-python
