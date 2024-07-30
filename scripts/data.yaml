@@ -1,0 +1,9 @@
+train: /home/cody/Documents/codyCodes/partLabeler/yolo_annotations/train  # Train dataset path
+val: /home/cody/Documents/codyCodes/partLabeler/yolo_annotations/val    # Validation dataset path
+
+nc: 23  # Number of classes
+names: ["radiator cap", "air intake filter", "throttle body", "intake plenum", "ecu box", 
+        "upper radiator hose", "fuse box", "battery", "radiator", "power steering reservoir",
+        "oil fill cap", "engine timing cover", "engine cover", "coolant overflow reservoir", 
+        "air intake snorkel", "throttle body motor", "MAF sensor", "grill", "air intake box", 
+        "brake master cylinder", "brake fluid reservoir", "clutch fluid reservoir", "air intake box", "engine cover", "windshield wiper reservoir", "header"]
