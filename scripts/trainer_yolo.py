@@ -12,8 +12,8 @@ def main():
     command = [
         'python', 'yolov5/train.py',
         '--img', '640',
-        '--batch', '16',
-        '--epochs', '20',
+        '--batch', '4',
+        '--epochs', '10',
         '--data', data_yaml_path,
         '--cfg', 'yolov5/models/yolov5s.yaml',
         '--weights', weights,
@@ -26,16 +26,18 @@ def main():
     
     # Load the training results
     results_path = os.path.join(model_save_dir, 'yolov5_model', 'results.txt')
-    results = {}
-    with open(resultspath, 'r') as f:
-        for line in f:
-            key, value = line.strip().split(':')
-            results[key] = float(value)
+    results = {'epoch': [], 'box_loss': [], 'obj_loss': [], 'cls_loss': []}
+    with open(results_path, 'r') as f:
+        lines = f.readlines()
+        for line in lines:
+            if 'box_loss' in line or 'obj_loss' in line or 'cls_loss' in line:
+                key, value = line.strip().split(':')
+                results[key].append(float(value))
     
     # Plot training history
-    plt.plot(results['box_loss'], label='Box Loss')
-    plt.plot(results['obj_loss'], label='Objectness Loss')
-    plt.plot(results['cls_loss'], label='Class Loss')
+    plt.plot(results['epoch'], results['box_loss'], label='Box Loss')
+    plt.plot(results['epoch'], results['obj_loss'], label='Objectness Loss')
+    plt.plot(results['epoch'], results['cls_loss'], label='Class Loss')
     plt.xlabel('Epoch')
     plt.ylabel('Loss')
     plt.legend(loc='upper right')
